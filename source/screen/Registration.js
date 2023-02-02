@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Image, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import CustomInput from '../components/CustomInput'
 import CustomButton from '../components/CustomButton'
@@ -10,7 +10,8 @@ const Registration = ({navigation}) => {
     const [repeatPassword, setRepeatPassword] = useState('')
     return (
         <View style={{ flex: 1,backgroundColor:"#fff" }}>
-            <View style={{ alignItems: "center", paddingTop: 90 }}>
+            <ScrollView>
+            <View style={{ alignItems: "center", paddingTop: Platform.OS == 'ios' ? 90 : 40 }}>
                 <Image source={require('../assets/ColorLogo.png')} />
             </View>
             <View style={{ alignItems: "center", marginTop: 24 }}>
@@ -19,7 +20,7 @@ const Registration = ({navigation}) => {
             </View>
 
             <CustomInput
-                style={{ paddingTop: 60 }}
+                style={{ paddingTop: Platform.OS=='ios' ? 60 : 40 }}
                 iconName={'user'}
                 value={name}
                 placeholder={'Name'}
@@ -48,7 +49,7 @@ const Registration = ({navigation}) => {
             />
             <CustomButton style={{ paddingTop: 30 }} title='Get started' />
 
-
+            </ScrollView>
             <View style={styles.footer}>
                 <Text style={{ color: "#C4C4C4", fontWeight: "500" }}>Already have an account?</Text>
                 <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
@@ -74,15 +75,17 @@ const styles = StyleSheet.create({
     },
     footer: {
         flexDirection: "row",
-        paddingBottom: 50,
         justifyContent: "center",
-        shadowColor: "#C4C4C4",
-        shadowOffset: { width: 0, height: 5 },
+        // shadowColor: "black",
+        shadowColor:Platform.OS == 'ios' ? "#C4C4C4" : "#000" ,
+        shadowOffset: { width: 0, height: 1 },
         shadowRadius: 10,
-        shadowOpacity: 1,
+        shadowOpacity: 0.25,
         backgroundColor: "#fff",
-        paddingTop: 16,
+        paddingBottom: Platform.OS == 'ios' ? 50 : 20,
+        paddingTop: Platform.OS == 'ios' ? 16 : 8,
         borderTopLeftRadius: 20,
-        borderTopRightRadius: 20
+        borderTopRightRadius: 20,
+        elevation:10
     }
 })

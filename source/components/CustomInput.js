@@ -12,7 +12,7 @@ const CustomInput = ({ value, placeholder, onChangeText ,style,iconName,...props
                     value={value}
                     placeholder={placeholder}
                     onChangeText={onChangeText}
-                    style={{ fontWeight:"800" }}
+                    style={{ fontWeight:"800" ,width:"80%"}}
                     placeholderTextColor={'#7B7B7B'}
                     {...props}
                 />

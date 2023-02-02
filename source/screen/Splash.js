@@ -1,7 +1,10 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const Splash = () => {
+const Splash = ({navigation}) => {
+  setTimeout(() => {
+    navigation.navigate('First')
+}, 2000);
   return (
     <View style={styles.mainContainer}>
              <Image source={require('../assets/logo.png')} />

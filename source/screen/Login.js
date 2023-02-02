@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Image, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import CustomInput from '../components/CustomInput'
 import CustomButton from '../components/CustomButton'
@@ -8,7 +8,7 @@ const Login = ({navigation}) => {
     const [password, setPassword] = useState('')
     return (
         <View style={{ flex: 1,backgroundColor:"#fff"}}>
-            <View style={{ alignItems: "center", paddingTop: 90 }}>
+            <View style={{ alignItems: "center", paddingTop: Platform.OS == 'ios' ? 90 :40 }}>
                 <Image source={require('../assets/ColorLogo.png')} />
             </View>
             <View style={{ alignItems: "center", marginTop: 24 }}>
@@ -17,14 +17,15 @@ const Login = ({navigation}) => {
             </View>
 
             <CustomInput
-                style={{ paddingTop: 60 }}
+            horizontal={true} 
+                style={{ marginTop: 60 }}
                 iconName={'mail'}
                 value={email}
                 placeholder={'Email'}
                 onChangeText={setEmail}
             />
             <CustomInput
-                style={{ paddingTop: 20 }}
+                style={{ marginTop: 20 }}
                 iconName={'lock'}
                 value={password}
                 placeholder={'Password'}
@@ -58,16 +59,17 @@ const styles = StyleSheet.create({
     },
     footer: {
         flexDirection: "row",
-        paddingBottom: 50,
         justifyContent: "center",
-        shadowColor: "#C4C4C4",
+        shadowColor:Platform.OS == 'ios' ? "#C4C4C4" : "#000" ,
         shadowOffset: { width: 0, height: 5 },
         shadowRadius: 10,
         shadowOpacity: 1,
         backgroundColor: "#fff",
-        paddingTop: 16,
+        paddingBottom: Platform.OS == 'ios' ? 50 : 20,
+        paddingTop: Platform.OS == 'ios' ? 16 : 8,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
+        elevation:10
     },
     forgotText: {
         textAlign: "right",

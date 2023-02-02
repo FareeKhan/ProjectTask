@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Button, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import CustomInput from '../components/CustomInput'
 import CustomButton from '../components/CustomButton'
@@ -9,15 +9,15 @@ const Email = ({ navigation }) => {
     const [email, setEmail] = useState('')
     return (
         <View style={{ flex: 1,backgroundColor:"#fff" }}>
-            <View style={{ flexDirection: "row", alignItems: "center", paddingTop: 52, width: "60%", justifyContent: "space-between", marginHorizontal: 24 }}>
+            <View style={{ flexDirection: "row", alignItems: "center", paddingTop: Platform.OS=='ios'?52 :20, width: "60%", justifyContent: "space-between", marginHorizontal: 24 }}>
                 <TouchableOpacity style={[styles.headerButton]} onPress={()=>navigation.goBack()}>
-                    <Iconic name="chevron-back-outline" size={18} />
+                    <Iconic name="chevron-back-outline" color={'#fff'} size={18} />
                 </TouchableOpacity>
                 <Text style={{ fontWeight: "700" }}>Forgot Password</Text>
             </View>
 
             <CustomInput
-                style={{ paddingTop: 60 }}
+                style={{ paddingTop: 40 }}
                 iconName={'mail'}
                 value={email}
                 placeholder={'Email'}

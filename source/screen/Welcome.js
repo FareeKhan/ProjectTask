@@ -1,4 +1,4 @@
-import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { FlatList, Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import CustomButton from '../components/CustomButton'
 import Iconic from 'react-native-vector-icons/Ionicons'
@@ -25,13 +25,15 @@ const Welcome = ({navigation}) => {
     }
     return (
         <View style={{ flex: 1, backgroundColor: "#08C0CA"}}>
-            <View style={{ flexDirection: "row", alignItems: "center", paddingTop: 52,justifyContent:"space-between", width: "75%",paddingBottom:30 , paddingHorizontal: 24 }}>
+            <View style={{ flexDirection: "row", alignItems: "center", paddingTop: Platform.OS=='ios'?52 :20,justifyContent:"space-between", width: "75%",paddingBottom:30 , paddingHorizontal: 24 }}>
                 <TouchableOpacity style={[styles.headerButton]} onPress={()=>navigation.goBack()}>
                     <Iconic name="chevron-back-outline" size={18}/>
                 </TouchableOpacity>
                 <Text style={{ fontWeight: "700", color: "#fff" }}>Pick your Favourites</Text>
             </View>
-            <View>
+            <ScrollView>
+
+           <View>
             <FlatList
             data={data}
             keyExtractor={(item,index)=>index.toString()}
@@ -39,9 +41,8 @@ const Welcome = ({navigation}) => {
             numColumns={2}
             />
             </View>
-
-            <CustomButton title='Continue' bgColor={'#fff'} textColor={'#000'} style={{paddingTop:30}} />
-
+            <CustomButton title='Continue' bgColor={'#fff'} textColor={'#000'} style={{paddingVertical:30}} />
+            </ScrollView>
         </View>
     )
 }

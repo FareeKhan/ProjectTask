@@ -2,21 +2,22 @@ import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'reac
 import React, { useState } from 'react'
 import CustomInput from '../components/CustomInput'
 import CustomButton from '../components/CustomButton'
+import Iconic from 'react-native-vector-icons/Ionicons'
 
 const ResetPassword = ({navigation}) => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     return (
         <View style={{ flex: 1 }}>
-            <View style={{ flexDirection: "row", alignItems: "center", paddingTop: 52, width: "60%", justifyContent: "space-between", marginHorizontal: 24 }}>
-                <TouchableOpacity style={[styles.headerButton]}>
-                    <Text style={{ color: "#fff" }}>s</Text>
+            <View style={{ flexDirection: "row", alignItems: "center", paddingTop: Platform.OS=='ios'?52 :20, width: "60%", justifyContent: "space-between", marginHorizontal: 24 }}>
+                <TouchableOpacity style={[styles.headerButton]} onPress={()=>navigation.goBack()}>
+                <Iconic name="chevron-back-outline" color={'#fff'} size={18} />
                 </TouchableOpacity>
                 <Text style={{ fontWeight: "700" }}>Reset Password</Text>
             </View>
 
             <CustomInput
-                style={{ paddingTop: 60 }}
+                style={{ paddingTop: 40 }}
                 iconName={'lock'}
                 value={password}
                 placeholder={'Password'}
@@ -29,7 +30,7 @@ const ResetPassword = ({navigation}) => {
                 placeholder={'Confirm Password'}
                 onChangeText={setConfirmPassword}
             />
-            <CustomButton style={{ paddingTop: 20 }} title='Reset'  onPress={navigation.navigate('Login')}/>
+            <CustomButton style={{ paddingTop: 20 }} title='Reset'  onPress={()=>navigation.navigate('Login')}/>
 
         </View>
     )

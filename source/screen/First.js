@@ -41,7 +41,7 @@ const First = ({ navigation }) => {
                             {
                                 data.map((item,index)=>{
                                     return(
-                                      <View style={{borderRadius:50,borderWidth:currentIndex == index ? 1:0,borderColor:item.colorName,marginRight:5}}>
+                                      <View key={index} style={{borderRadius:50,borderWidth:currentIndex == index ? 1:0,borderColor:item.colorName,marginRight:5}}>
                                           <View 
                                            style={{backgroundColor: item.colorName,width:currentIndex == index ? 6 : 4,height:currentIndex == index ?6 :4,borderRadius:currentIndex == index  ? 12:10,margin:2}} />
                                         </View>
@@ -49,7 +49,7 @@ const First = ({ navigation }) => {
                                 })
                             }
                          </View>
-                        <TouchableOpacity onPress={() => flatref.scrollToIndex({ index: data.length !== index + 1 ? index + 1 : '' })} style={[styles.footerButton, { backgroundColor: item.colorName }]}>
+                        <TouchableOpacity onPress={() => {flatref.scrollToIndex({ index: data.length !== index + 1 ? index + 1 : '' ,}), data.length == index + 1 ? navigation.navigate('Registration') : ''}} style={[styles.footerButton, { backgroundColor: item.colorName }]}>
                             <Iconic name="chevron-forward-outline" size={18} color={'#fff'} />
                         </TouchableOpacity>
                     </View>

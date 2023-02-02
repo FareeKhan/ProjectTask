@@ -7,11 +7,13 @@ import Login from '../screen/Login'
 import Email from '../screen/Email'
 import ResetPassword from '../screen/ResetPassword'
 import Welcome from '../screen/Welcome'
+import Splash from '../screen/Splash'
 
 const StackNavigation = () => {
    const Stack = createStackNavigator()
    return (
-      <Stack.Navigator initialRouteName='First' screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName='Splash' screenOptions={{ headerShown: false }}>
+         <Stack.Screen name='Splash' component={Splash} />
          <Stack.Screen name='First' component={First} />
          <Stack.Screen name='Registration' component={Registration} />
          <Stack.Screen name='Login' component={Login} />
